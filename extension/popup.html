@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Autoposter</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Autoposter</h1>
+      <div id="status-dot" class="status-dot offline" title="Checking server..."></div>
+    </header>
+
+    <div id="server-offline" class="banner banner-error" style="display:none">
+      Server offline — start it with <code>npm start</code>
+    </div>
+    <div id="dry-run-banner" class="banner banner-warn" style="display:none">
+      Dry-run mode — posts are simulated
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="post">New Post</button>
+      <button class="tab" data-tab="history">History</button>
+      <button class="tab" data-tab="settings">Settings</button>
+    </div>
+
+    <!-- New Post tab -->
+    <div id="tab-post" class="tab-content active">
+      <div class="field">
+        <label>Platform</label>
+        <div class="toggle-group">
+          <button class="toggle active" data-platform="reddit">Reddit</button>
+          <button class="toggle" data-platform="tiktok">TikTok</button>
+        </div>
+      </div>
+
+      <!-- Reddit fields -->
+      <div id="reddit-fields">
+        <div class="field">
+          <label for="subreddit">Subreddit</label>
+          <input type="text" id="subreddit" placeholder="e.g. test">
+        </div>
+        <div class="field">
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="Post title">
+        </div>
+        <div class="field">
+          <label for="text">Text <span class="optional">(optional)</span></label>
+          <textarea id="text" rows="3" placeholder="Post body text"></textarea>
+        </div>
+        <div class="field">
+          <label for="url">URL <span class="optional">(optional)</span></label>
+          <input type="text" id="url" placeholder="Link URL">
+        </div>
+      </div>
+
+      <!-- TikTok fields -->
+      <div id="tiktok-fields" style="display:none">
+        <div class="field">
+          <label for="tt-title">Title</label>
+          <input type="text" id="tt-title" placeholder="Video title">
+        </div>
+        <div class="field">
+          <label for="tt-video">Video file path</label>
+          <input type="text" id="tt-video" placeholder="/path/to/video.mp4">
+        </div>
+        <div class="field">
+          <label for="tt-tags">Tags <span class="optional">(comma separated)</span></label>
+          <input type="text" id="tt-tags" placeholder="funny, viral, trending">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="schedule">Schedule <span class="optional">(optional)</span></label>
+        <input type="datetime-local" id="schedule">
+      </div>
+
+      <button id="submit-btn" class="btn-primary">Post Now</button>
+      <div id="result" class="result" style="display:none"></div>
+    </div>
+
+    <!-- History tab -->
+    <div id="tab-history" class="tab-content">
+      <div id="history-list" class="history-list">
+        <p class="empty">Loading...</p>
+      </div>
+    </div>
+
+    <!-- Settings tab -->
+    <div id="tab-settings" class="tab-content">
+      <div class="field">
+        <label for="api-url">API URL</label>
+        <input type="text" id="api-url" placeholder="http://localhost:4000">
+      </div>
+      <button id="save-settings" class="btn-primary">Save</button>
+      <div id="settings-result" class="result" style="display:none"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

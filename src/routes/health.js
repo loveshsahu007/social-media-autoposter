@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
 
     res.json({
       status: "ok",
+      dryRun: process.env.DRY_RUN === "true",
       uptime: process.uptime(),
       posts: postCount,
       activeJobs: jobCount,
